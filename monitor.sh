@@ -22,9 +22,11 @@ function check_arguments {
 	fi
 
 	CPU_THRESHOLD=$4
+    TRACK_MEM=0
 
 	#Extract the memory threshold (part 2 of the script)
     if [ "$1" -gt 6 ]; then
+        TRACK_MEM=1
         MEM_THRESHOLD=$6
     fi
 
@@ -154,12 +156,14 @@ function notify
         rm message
     fi
 
+    if [ $TRACK_MEM -eq 1] ; then
     if [ $2 -gt $MEM_THRESHOLD ] ; then
         touch message
         echo "Warning:" >> message
         echo "Process $PID exceeded memory usage." >> message
         /usr/bin/mailx -s "Process Warning" $USER < message
         rm message
+    fi
     fi
 
 }
