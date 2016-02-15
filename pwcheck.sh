@@ -32,7 +32,7 @@ if grep -q [A-Za-z] $1 ; then
     echo "Has a char: +5"
 fi
 
-if egrep -q \'\([A-Za-z]\)\1+\' $1 ; then
+if egrep -q \([A-Za-z]\)\1+ $1 ; then
     let SCORE=SCORE-10
     echo "Is stupid: -10"
 fi
