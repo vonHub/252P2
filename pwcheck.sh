@@ -27,8 +27,7 @@ if grep -q [0-9] $1 ; then
     echo "Has a number: +5"
 fi
 
-r="[A-Za-z]"
-if pw=~$r ; then
+if grep -q [A-Za-z] $1 ; then
     let SCORE=SCORE+5
     echo "Has a char: +5"
 fi
