@@ -55,12 +55,14 @@ function jiffies_to_percentage {
     newutime=$3
     newstime=$4
 
-    echo $1 $2 $3 $4 >> file.txt
+    #echo $1 $2 $3 $4 >> file.txt
+    #So it's getting the arguments correctly
+    #Just not returning the right value
 
 	#Calculate the elpased ticks between newstime and oldstime (diff_stime),
     #and newutime and oldutime (diff_utime)
-    diff_stime=newstime-oldstime
-    diff_utime=newutime-oldutime
+    diff_stime=$newstime-$oldstime
+    diff_utime=$newutime-$oldutime
 
 	#You will use the following command to calculate the CPU usage percentage.
     #$TIME_INTERVAL is the user-provided time_interval
