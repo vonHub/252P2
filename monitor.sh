@@ -144,7 +144,7 @@ function notify
 	#Check if process exceeded its CPU or MEM thresholds. If that is the case,
     #send an email to $USER containing the last report
 
-    if [cpu_usage_int -gt $CPU_THRESHOLD] ; then
+    if [$cpu_usage_int -gt $CPU_THRESHOLD] ; then
         touch message
         echo "Warning:" >> message
         echo "Process $PID exceeded CPU usage." >> message
