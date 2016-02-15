@@ -129,7 +129,7 @@ function calculate_cpu_usage {
 function calculate_mem_usage
 {
 	#Let us extract the VmRSS value from /proc/{pid}/status
-    LINE=`cat /proc/$PID/status | grep VmRSS`
+    mem_usage=`cat /proc/$PID/status | grep VmRSS | awk '{print $2}'`
 
 	#Return the memory usage
 	echo "$mem_usage"
@@ -173,6 +173,7 @@ do
 	mem_usage=$(calculate_mem_usage)
 
 	generate_report $cpu_usage $mem_usage
+    echo "Memory: "$mem_usage
 
 	#Call the notify function to send an email to $USER if
     #the thresholds were exceeded
