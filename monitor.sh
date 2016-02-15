@@ -55,10 +55,6 @@ function jiffies_to_percentage {
     newutime=$3
     newstime=$4
 
-    #echo $1 $2 $3 $4 >> file.txt
-    #So it's getting the arguments correctly
-    #Just not returning the right value
-
 	#Calculate the elpased ticks between newstime and oldstime (diff_stime),
     #and newutime and oldutime (diff_utime)
     diff_stime=$newstime-$oldstime
@@ -177,7 +173,6 @@ do
 	mem_usage=$(calculate_mem_usage)
 
 	generate_report $cpu_usage $mem_usage
-    echo "Report generated:" $cpu_usage
 
 	#Call the notify function to send an email to $USER if
     #the thresholds were exceeded
