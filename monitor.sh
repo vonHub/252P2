@@ -173,6 +173,7 @@ do
 	mem_usage=$(calculate_mem_usage)
 
 	generate_report $cpu_usage $mem_usage
+    echo "Report generated:" $cpu_usage
 
 	#Call the notify function to send an email to $USER if
     #the thresholds were exceeded
