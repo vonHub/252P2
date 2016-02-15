@@ -59,8 +59,6 @@ function jiffies_to_percentage {
     #and newutime and oldutime (diff_utime)
     diff_stime=newstime-oldstime
     diff_utime=newutime-oldutime
-    echo $diff_stime
-    echo $diff_utime
 
 	#You will use the following command to calculate the CPU usage percentage.
     #$TIME_INTERVAL is the user-provided time_interval
