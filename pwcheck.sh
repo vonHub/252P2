@@ -20,7 +20,7 @@ if grep -q [\(\)\#$+%@] $1 ; then
 fi
 
 if grep -q [0-9] $1 ; then
-    let SCORE=SCORE+1
+    let SCORE=SCORE+5
 fi
 
 if grep -q [A-Za-z] $1; then
