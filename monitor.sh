@@ -156,7 +156,7 @@ function notify
         rm message
     fi
 
-    if [ $TRACK_MEM -eq 1] ; then
+    if [ $TRACK_MEM -eq 1 ] ; then
     if [ $2 -gt $MEM_THRESHOLD ] ; then
         touch message
         echo "Warning:" >> message
