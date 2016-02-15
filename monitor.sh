@@ -145,8 +145,11 @@ function notify
     #send an email to $USER containing the last report
 
     if [cpu_usage_int -gt $CPU_THRESHOLD] ; then
-        /usr/bin/mailx -s "mail-hello" $USER < "Warning:
-            Process $PID exceeded CPU usage."
+        touch message
+        echo "Warning:" >> message
+        echo "Process $PID exceeded CPU usage." >> message
+        /usr/bin/mailx -s "Process Warning" $USER < message
+        rm message
     fi
 
 }
