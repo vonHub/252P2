@@ -32,10 +32,9 @@ if grep -q [A-Za-z] $1 ; then
     echo "Has a char: +5"
 fi
 
-#s="[0-9]"
-#if pw=~s ; then
-#    let SCORE=SCORE-10
-#    echo "Is stupid: -10"
-#fi
+if grep -q \'[A-Za-z]\' $1 ; then
+    let SCORE=SCORE-10
+    echo "Is stupid: -10"
+fi
 
 echo $SCORE
