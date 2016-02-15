@@ -16,7 +16,7 @@ fi
 SCORE=${#pw}
 
 if grep -q [\(\)\#$+%@] $1 ; then
-    let SCORE=SCORE+1
+    let SCORE=SCORE+5
 fi
 
 echo $SCORE
