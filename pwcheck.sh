@@ -11,6 +11,7 @@ pw=$(cat $1)
 
 if [[ ${#pw} -lt 6 ]] || [[ ${#pw} -gt 32 ]] ; then
     echo "Error: Password length invalid."
+    exit
 fi
 
 if grep -q [0-9] $1 ; then
