@@ -24,7 +24,9 @@ function check_arguments {
 	CPU_THRESHOLD=$4
 
 	#Extract the memory threshold (part 2 of the script)
-
+    if [ "$1" -gt 7 ]; then
+        MEM_THRESHOLD=$6
+    fi
 
 }
 
@@ -89,7 +91,7 @@ function generate_report {
 	echo "PROCESS ID: $PID" > ./reports_dir/$file_name
 	echo "PROCESS NAME: $process_name" >> ./reports_dir/$file_name
 	echo "CPU USAGE: $1 %" >> ./reports_dir/$file_name
-	#echo "MEMORY USAGE: $2 kB" >> ./reports_dir/$file_name
+	echo "MEMORY USAGE: $2 kB" >> ./reports_dir/$file_name
 }
 
 #Returns a percentage representing the CPU usage
@@ -152,6 +154,14 @@ function notify
         rm message
     fi
 
+    if [$2 -gt $MEM_THRESHOLD ] ; then
+        touch message
+        echo "Warning:" >> message
+        echo "Process $PID exceeded memory usage." >> message
+        /usr/bin/mailx -s "Process Warning" $USER < message
+        rm message
+    fi
+
 }
 
 
@@ -173,7 +183,6 @@ do
 	mem_usage=$(calculate_mem_usage)
 
 	generate_report $cpu_usage $mem_usage
-    echo "Memory: "$mem_usage
 
 	#Call the notify function to send an email to $USER if
     #the thresholds were exceeded
