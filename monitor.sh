@@ -154,7 +154,7 @@ function notify
         rm message
     fi
 
-    if [$2 -gt $MEM_THRESHOLD ] ; then
+    if [ $2 -gt $MEM_THRESHOLD ] ; then
         touch message
         echo "Warning:" >> message
         echo "Process $PID exceeded memory usage." >> message
