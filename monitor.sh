@@ -141,10 +141,13 @@ function notify
     #for convenience. We will compare $usage_int to $CPU_THRESHOLD
 	cpu_usage_int=$(printf "%.f" $1)
 
-	#Check if the process has exceeded the thresholds
-
 	#Check if process exceeded its CPU or MEM thresholds. If that is the case,
     #send an email to $USER containing the last report
+
+    if [cpu_usage_int -gt $CPU_THRESHOLD] ; then
+        /usr/bin/mailx -s "mail-hello" $USER < "Warning:
+            Process $PID exceeded CPU usage."
+    fi
 
 }
 
@@ -170,6 +173,6 @@ do
 
 	#Call the notify function to send an email to $USER if
     #the thresholds were exceeded
-	#notify $cpu_usage $mem_usage
+	notify $cpu_usage $mem_usage
 
 done
