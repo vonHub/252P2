@@ -22,6 +22,7 @@ function check_arguments {
 	fi
 
 	CPU_THRESHOLD=$4
+    MEM_THRESHOLD=1000000
 
 	#Extract the memory threshold (part 2 of the script)
     if [ "$1" -gt 7 ]; then
