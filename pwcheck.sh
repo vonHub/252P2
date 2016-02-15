@@ -19,4 +19,8 @@ if grep -q [\(\)\#$+%@] $1 ; then
     let SCORE=SCORE+5
 fi
 
+if grep -q [0-9] $1 ; then
+    let SCORE=SCORE+1
+fi
+
 echo $SCORE
