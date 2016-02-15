@@ -27,4 +27,8 @@ if grep -q [A-Za-z] $1; then
     let SCORE=SCORE+5
 fi
 
+if grep -q ([A-Za-z])\1+ $1; then
+    let SCORE=SCORE-10
+fi
+
 echo $SCORE
