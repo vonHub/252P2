@@ -14,6 +14,7 @@ if [[ ${#pw} -lt 6 ]] || [[ ${#pw} -gt 32 ]] ; then
 fi
 
 SCORE=${#pw}
+echo "Password: "$pw
 echo "Length: "$SCORE
 
 if grep -q [\(\)\#$+%@] $1 ; then
