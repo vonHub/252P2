@@ -13,7 +13,8 @@ hertz=$(getconf CLK_TCK)
 function check_arguments {
 
 
-	#If number of arguments is less than 5, exit. For part 2, the number of arguments should be greater than 7
+	#If number of arguments is less than 5, exit.
+    #For part 2, the number of arguments should be greater than 7
 	if [ "$1" -lt 5 ]; then
 		echo "USAGE: "
 		echo "$0 {process id} -cpu {utilization percentage} {maximum reports} {time interval}"
@@ -44,25 +45,30 @@ function init
 
 }
 
-#This function calculates the CPU usage percentage given the clock ticks in the last $TIME_INTERVAL seconds
+#This function calculates the CPU usage percentage given
+#the clock ticks in the last $TIME_INTERVAL seconds
 function jiffies_to_percentage {
 	
 	#Get the function arguments (oldstime, oldutime, newstime, newutime)
 
-	#Calculate the elpased ticks between newstime and oldstime (diff_stime), and newutime and oldutime (diff_stime)
+	#Calculate the elpased ticks between newstime and oldstime (diff_stime),
+    #and newutime and oldutime (diff_utime)
 
-	#You will use the following command to calculate the CPU usage percentage. $TIME_INTERVAL is the user-provided time_interval
+	#You will use the following command to calculate the CPU usage percentage.
+    #$TIME_INTERVAL is the user-provided time_interval
 	#Note how we are using the "bc" command to perform floating point division
 
 	echo "100 * ( ($diff_stime + $diff_utime) / $hertz) / $TIME_INTERVAL" | bc -l
 }
 
 
-#This function takes as arguments the cpu usage and the memory usage that were last computed
+#This function takes as arguments the cpu usage and
+#the memory usage that were last computed
 function generate_report {
 
 	
-	#if ./reports_dir has more than $MAXIMUM_REPORTS reports, then, delete the oldest report to have room for the current one
+	#if ./reports_dir has more than $MAXIMUM_REPORTS reports,
+    #then delete the oldest report to have room for the current one
 
 	#Name of the report file
 	file_name="$(date +'%d.%m.%Y.%H.%M.%S')"
@@ -70,7 +76,8 @@ function generate_report {
 	#Extracting process name from /proc
 	process_name=$(cat /proc/$PID/stat | awk '{print $2}')
 
-	#You may uncomment the following lines to generate the report. Make sure the first argument to this function is the CPU usage
+	#You may uncomment the following lines to generate the report.
+    #Make sure the first argument to this function is the CPU usage
 	#and the second argument is the memory usage
 
 	#echo "PROCESS ID: $PID" > ./reports_dir/$file_name
@@ -82,8 +89,10 @@ function generate_report {
 #Returns a percentage representing the CPU usage
 function calculate_cpu_usage {
 
-	#CPU usage is measured over a periode of time. We will use the user-provided interval_time value to calculate 
-	#the CPU usage for the last interval_time seconds. For example, if interval_time is 5 seconds, then, CPU usage
+	#CPU usage is measured over a period of time.
+    #We will use the user-provided interval_time value to calculate 
+	#the CPU usage for the last interval_time seconds. For example,
+    #if interval_time is 5 seconds, then, CPU usage
 	#is measured over the last 5 seconds
 
 
@@ -94,7 +103,8 @@ function calculate_cpu_usage {
 
 	#Now, get the current utime and stime (newutime and newstime) /proc/{pid}/stat
 
-	#The values we got so far are all in jiffier (not Hertz), we need to convert them to percentages, we will use the function
+	#The values we got so far are all in jiffier (not Hertz).
+    #We need to convert them to percentages, we will use the function
 	#jiffies_to_percentage
 
 	#percentage=$(jiffies_to_percentage $oldutime $oldstime $newutime $newstime)
@@ -115,12 +125,14 @@ function calculate_mem_usage
 
 function notify
 {
-	#We convert the float representating the CPU usage to an integer for convenience. We will compare $usage_int to $CPU_THRESHOLD
+	#We convert the float representating the CPU usage to an integer
+    #for convenience. We will compare $usage_int to $CPU_THRESHOLD
 	cpu_usage_int=$(printf "%.f" $1)
 
 	#Check if the process has exceeded the thresholds
 
-	#Check if process exceeded its CPU or MEM thresholds. If that is the case, send an email to $USER containing the last report
+	#Check if process exceeded its CPU or MEM thresholds. If that is the case,
+    #send an email to $USER containing the last report
 
 }
 
@@ -144,7 +156,8 @@ do
 
 	generate_report $cpu_usage $mem_usage
 
-	#Call the notify function to send an email to $USER if the thresholds were exceeded
+	#Call the notify function to send an email to $USER if
+    #the thresholds were exceeded
 	#notify $cpu_usage $mem_usage
 
 done
