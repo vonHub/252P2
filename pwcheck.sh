@@ -15,43 +15,43 @@ fi
 
 # Set the start score (length)
 SCORE=${#pw}
-echo "Password: "$pw
-echo "Length: "$SCORE
+# echo "Password: "$pw
+# echo "Length: "$SCORE
 
 if grep -q [\(\)\#$+%@] $1 ; then
     let SCORE=SCORE+5
-    echo "Has a special character: +5"
+    # echo "Has a special character: +5"
 fi
 
 if grep -q [0-9] $1 ; then
     let SCORE=SCORE+5
-    echo "Has a number: +5"
+    # echo "Has a number: +5"
 fi
 
 if grep -q [A-Za-z] $1 ; then
     let SCORE=SCORE+5
-    echo "Has a char: +5"
+    # echo "Has a char: +5"
 fi
 
 r="([A-Za-z])\1+"
 if egrep -q $r $1 ; then
     let SCORE=SCORE-10
-    echo "Repeated chars: -10"
+    # echo "Repeated chars: -10"
 fi
 
 if grep -q [a-z][a-z][a-z] $1 ; then
     let SCORE=SCORE-3
-    echo "Three consecutive lowercase: -3"
+    # echo "Three consecutive lowercase: -3"
 fi
 
 if grep -q [A-Z][A-Z][A-Z] $1 ; then
     let SCORE=SCORE-3
-    echo "Three consecutive uppercase: -3"
+    # echo "Three consecutive uppercase: -3"
 fi
 
 if grep -q [0-9][0-9][0-9] $1 ; then
     let SCORE=SCORE-3
-    echo "Three consecutive numbers: -3"
+    # echo "Three consecutive numbers: -3"
 fi
 
-echo $SCORE
+echo "Password Score: "$SCORE
