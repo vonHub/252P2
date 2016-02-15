@@ -186,6 +186,7 @@ do
 
 	#Call the notify function to send an email to $USER if
     #the thresholds were exceeded
+    echo $mem_usage
 	notify $cpu_usage $mem_usage
 
 done
