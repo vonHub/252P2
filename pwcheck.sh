@@ -6,7 +6,6 @@ git commit -a -m "Lab 2 commit" >> .local.git.out
 
 #Your code here
 
-SCORE=0
 pw=$(cat $1)
 
 if [[ ${#pw} -lt 6 ]] || [[ ${#pw} -gt 32 ]] ; then
@@ -14,7 +13,9 @@ if [[ ${#pw} -lt 6 ]] || [[ ${#pw} -gt 32 ]] ; then
     exit
 fi
 
-if grep -q [0-9] $1 ; then
+SCORE=${#pw}
+
+if grep -q [()\#$+%@] $1 ; then
     let SCORE=SCORE+1
 fi
 
