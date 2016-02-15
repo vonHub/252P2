@@ -86,9 +86,9 @@ function generate_report {
     #Make sure the first argument to this function is the CPU usage
 	#and the second argument is the memory usage
 
-	#echo "PROCESS ID: $PID" > ./reports_dir/$file_name
-	#echo "PROCESS NAME: $process_name" >> ./reports_dir/$file_name
-	#echo "CPU USAGE: $1 %" >> ./reports_dir/$file_name
+	echo "PROCESS ID: $PID" > ./reports_dir/$file_name
+	echo "PROCESS NAME: $process_name" >> ./reports_dir/$file_name
+	echo "CPU USAGE: $1 %" >> ./reports_dir/$file_name
 	#echo "MEMORY USAGE: $2 kB" >> ./reports_dir/$file_name
 }
 
@@ -108,6 +108,7 @@ function calculate_cpu_usage {
     oldstime=$(cat /proc/$PID/stat | awk '{print $15}')
 
 	#Sleep for time_interval
+    sleep $TIME_INTERVAL
 
 	#Now, get the current utime and stime (newutime and newstime) /proc/{pid}/stat
 
