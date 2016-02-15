@@ -23,7 +23,7 @@ if grep -q [0-9] $1 ; then
     let SCORE=SCORE+1
 fi
 
-if grep -q [a\-z] ; then
+if grep -q [[a-z]] ; then
     let SCORE=SCORE+5
 fi
 
