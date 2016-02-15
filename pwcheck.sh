@@ -15,7 +15,7 @@ fi
 
 SCORE=${#pw}
 
-if grep -q [()\#$+%@] $1 ; then
+if grep -q [\(\)\#$+%@] $1 ; then
     let SCORE=SCORE+1
 fi
 
