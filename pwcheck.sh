@@ -8,6 +8,6 @@ git commit -a -m "Lab 2 commit" >> .local.git.out
 SCORE=0
 if /usr/xpg4/bin/egrep -q [0-9] $1 ; then
     let SCORE=SCORE+1
-if
+fi
 
 echo $SCORE
