@@ -35,7 +35,22 @@ fi
 r="([A-Za-z])\1+"
 if egrep -q $r $1 ; then
     let SCORE=SCORE-10
-    echo "Is stupid: -10"
+    echo "Repeated chars: -10"
+fi
+
+if grep -q [a-z][a-z][a-z] $1 ; then
+    let SCORE=SCORE-3
+    echo "Three consecutive lowercase: -3"
+fi
+
+if grep -q [A-Z][A-Z][A-Z] $1 ; then
+    let SCORE=SCORE-3
+    echo "Three consecutive uppercase: -3"
+fi
+
+if grep -q [0-9][0-9][0-9] $1 ; then
+    let SCORE=SCORE-3
+    echo "Three consecutive numbers: -3"
 fi
 
 echo $SCORE
