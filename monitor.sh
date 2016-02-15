@@ -49,10 +49,16 @@ function init
 #the clock ticks in the last $TIME_INTERVAL seconds
 function jiffies_to_percentage {
 	
-	#Get the function arguments (oldstime, oldutime, newstime, newutime)
+	#Get the function arguments (oldutime, oldstime, newutime, newstime)
+    oldutime=$1
+    oldstime=$2
+    newutime=$3
+    newstime=$4
 
 	#Calculate the elpased ticks between newstime and oldstime (diff_stime),
     #and newutime and oldutime (diff_utime)
+    diff_stime=newstime-oldstime
+    diff_utime=newutime-oldutime
 
 	#You will use the following command to calculate the CPU usage percentage.
     #$TIME_INTERVAL is the user-provided time_interval
@@ -98,16 +104,21 @@ function calculate_cpu_usage {
 
 	#First, get the current utime and stime (oldutime and oldstime) from /proc/{pid}/stat
 
+    oldutime=$(cat /proc/$PID/stat | awk '{print $14}')
+    oldstime=$(cat /proc/$PID/stat | awk '{print $15}')
 
 	#Sleep for time_interval
 
 	#Now, get the current utime and stime (newutime and newstime) /proc/{pid}/stat
 
+    newutime=$(cat /proc/$PID/stat | awk '{print $14}')
+    newstime=$(cat /proc/$PID/stat | awk '{print $15}')
+
 	#The values we got so far are all in jiffier (not Hertz).
     #We need to convert them to percentages, we will use the function
 	#jiffies_to_percentage
 
-	#percentage=$(jiffies_to_percentage $oldutime $oldstime $newutime $newstime)
+	percentage=$(jiffies_to_percentage $oldutime $oldstime $newutime $newstime)
 
 
 	#Return the usage percentage
