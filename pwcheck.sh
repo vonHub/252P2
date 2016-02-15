@@ -4,15 +4,16 @@
 git add $0 >> .local.git.out
 git commit -a -m "Lab 2 commit" >> .local.git.out
 
-#Your code here
-
+# Get the text password
 pw=$(cat $1)
 
+# Determine the password length
 if [[ ${#pw} -lt 6 ]] || [[ ${#pw} -gt 32 ]] ; then
     echo "Error: Password length invalid."
     exit
 fi
 
+# Set the start score (length)
 SCORE=${#pw}
 echo "Password: "$pw
 echo "Length: "$SCORE
