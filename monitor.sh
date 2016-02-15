@@ -55,6 +55,8 @@ function jiffies_to_percentage {
     newutime=$3
     newstime=$4
 
+    echo $1 $2 $3 $4 >> file.txt
+
 	#Calculate the elpased ticks between newstime and oldstime (diff_stime),
     #and newutime and oldutime (diff_utime)
     diff_stime=newstime-oldstime
