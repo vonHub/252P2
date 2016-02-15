@@ -9,7 +9,7 @@ git commit -a -m "Lab 2 commit" >> .local.git.out
 SCORE=0
 pw=$(cat $1)
 
-if [[ ${#pw} < 6 ]] || [[ ${#pw} > 32 ]] ; then
+if [[ ${#pw} -lt 6 ]] || [[ ${#pw} -gt 32 ]] ; then
     echo "Error: Password length invalid."
 fi
 
