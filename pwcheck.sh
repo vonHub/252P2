@@ -33,7 +33,7 @@ if pw=~$r ; then
     echo "Has a char: +5"
 fi
 
-r="([A-Za-z])\1+"
+r="([0-9])\1+"
 if pw=~$r ; then
     let SCORE=SCORE-10
     echo "Is stupid: -10"
