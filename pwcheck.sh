@@ -8,6 +8,7 @@ git commit -a -m "Lab 2 commit" >> .local.git.out
 
 SCORE=0
 pw=$(cat $1)
+echo pw
 
 if grep -q [0-9] $1 ; then
     let SCORE=SCORE+1
