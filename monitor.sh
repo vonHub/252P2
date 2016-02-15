@@ -25,7 +25,7 @@ function check_arguments {
     MEM_THRESHOLD=1000000
 
 	#Extract the memory threshold (part 2 of the script)
-    if [ "$1" -gt 7 ]; then
+    if [ "$1" -gt 6 ]; then
         MEM_THRESHOLD=$6
     fi
 
